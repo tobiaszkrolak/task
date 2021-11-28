@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ProductList from './ProductList';
+import ProductList from '../containers/ProductList';
 
 test('renders the ProductList', () => {
   const { getByText } = render(<ProductList />);
