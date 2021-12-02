@@ -36,7 +36,7 @@ export type Image = {
   path: string;
 };
 
-const CATEGORY_WITH_PRODUCTS = gql`
+export const CATEGORY_WITH_PRODUCTS_QUERY = gql`
   {
     categories(ids: "156126", locale: de_DE) {
       name
@@ -68,7 +68,7 @@ const CATEGORY_WITH_PRODUCTS = gql`
 export const useGetCategoryWithProducts = () => {
   const { data, ...rest } = useQuery<{
     categories: Category[];
-  }>(CATEGORY_WITH_PRODUCTS);
+  }>(CATEGORY_WITH_PRODUCTS_QUERY);
 
   const firstCategory = useMemo(
     () => (data?.categories?.length ? data.categories[0] : undefined),

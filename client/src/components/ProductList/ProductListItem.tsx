@@ -5,11 +5,15 @@ import { jsx, css } from "@emotion/react";
 
 export type Props = {
   name: string;
-  image: string;
+  imageUrl?: string;
   price: number;
 };
 
-const ProductListItem: FunctionComponent<Props> = ({ name, image, price }) => (
+const ProductListItem: FunctionComponent<Props> = ({
+  name,
+  imageUrl,
+  price,
+}) => (
   <article
     css={css`
       border: 1px solid lavenderblush;
@@ -22,9 +26,9 @@ const ProductListItem: FunctionComponent<Props> = ({ name, image, price }) => (
       }
     `}
   >
-    <img src={image} alt={name} />
-    <p>{name}</p>
-    <p>
+    <img data-testid={TEST_IDS.image} src={imageUrl} alt={name} />
+    <p data-testid={TEST_IDS.name}>{name}</p>
+    <p data-testid={TEST_IDS.price}>
       <CurrencyNumberFormatter value={price} />
     </p>
     <button
@@ -40,5 +44,11 @@ const ProductListItem: FunctionComponent<Props> = ({ name, image, price }) => (
     </button>
   </article>
 );
+
+export const TEST_IDS = {
+  name: "name",
+  image: "image",
+  price: "price",
+};
 
 export default ProductListItem;

@@ -30,6 +30,7 @@ const Page: FunctionComponent<Props> = ({
     `}
   >
     <header
+      data-testid={TEST_IDS.header}
       css={{
         gridArea: "header",
         backgroundColor: "lightblue",
@@ -38,6 +39,7 @@ const Page: FunctionComponent<Props> = ({
       {header}
     </header>
     <aside
+      data-testid={TEST_IDS.sidebar}
       css={{
         gridArea: "sidebar",
         backgroundColor: "lavender",
@@ -46,6 +48,7 @@ const Page: FunctionComponent<Props> = ({
       {sidebar}
     </aside>
     <main
+      data-testid={TEST_IDS.content}
       css={{
         gridArea: "content",
         gridColumns: "span 2",
@@ -54,6 +57,7 @@ const Page: FunctionComponent<Props> = ({
       {children}
     </main>
     <footer
+      data-testid={TEST_IDS.footer}
       css={{
         gridArea: "footer",
         backgroundColor: "lightblue",
@@ -64,5 +68,12 @@ const Page: FunctionComponent<Props> = ({
     </footer>
   </section>
 );
+
+export const TEST_IDS = {
+  header: "header",
+  footer: "footer",
+  sidebar: "sidebar",
+  content: "content",
+};
 
 export default Page;
