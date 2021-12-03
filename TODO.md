@@ -1,0 +1,13 @@
+- Add more formatting options in CurrencyNumberFormatter like units and rename it to NumberFormatter.
+- Provide config for NumberFormatter based on localization and user settings. 
+- Translations
+- StoryBook 
+- Virtualized GenericList
+- GenericList should support infinity loading (pagination)
+- Support more images on ProductItem (src set)
+- Categories query should accept variables (page, others)
+- Search is without implementation
+- Browse children categories
+- Mobile friendly
+- Shadow loading on GenericList (itemRenderer should support loading prop)
+- Error boundary
