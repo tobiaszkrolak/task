@@ -11,3 +11,4 @@
 - Mobile friendly
 - Shadow loading on GenericList (itemRenderer should support loading prop)
 - Error boundary
+- 100% test coverage, test more cases

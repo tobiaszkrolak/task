@@ -36,3 +36,5 @@ Done
 - Page better semantic - used section, header, aside, main, footer
 - Abstracted generic list component that accepts query result
 - GenericList has ability to style differently items layout
+- Moved some dependencies to dev dependencies 
+- Added test-coverage to scripts

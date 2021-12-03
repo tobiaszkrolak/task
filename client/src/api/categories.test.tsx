@@ -1,9 +1,36 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import React, { FunctionComponent } from "react";
+import { render, waitFor } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { CATEGORY_WITH_PRODUCTS_QUERY } from "./categories";
+import {
+  useGetCategoryWithProducts,
+  CATEGORY_WITH_PRODUCTS_QUERY,
+} from "./categories";
 
-const result = {
+it("useGetCategoryWithProducts returns first category as data", async () => {
+  const { getByText } = render(
+    <CategoriesMock>
+      <GetCategoryUsageExample />
+    </CategoriesMock>
+  );
+
+  const firstCategoryName = result.data.categories[0].name;
+
+  await waitFor(() => getByText(firstCategoryName));
+
+  expect(getByText(firstCategoryName)).toBeInTheDocument();
+});
+
+const GetCategoryUsageExample = () => {
+  const { data } = useGetCategoryWithProducts();
+
+  return <span>{data ? data.name : "-"}</span>;
+};
+
+export const CategoriesMock: FunctionComponent = ({ children }) => (
+  <MockedProvider mocks={mock}>{children}</MockedProvider>
+);
+
+export const result = {
   data: {
     categories: [
       {

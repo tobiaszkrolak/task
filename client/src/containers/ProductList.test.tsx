@@ -1,21 +1,32 @@
 import React from "react";
 import { render, waitFor } from "@testing-library/react";
-import { MockedProvider } from "@apollo/client/testing";
-import ProductList from "./ProductList";
-import { mock } from "api/categories-mock";
+import ProductList, { CATEGORY_TITLE_TEST_ID } from "./ProductList";
+import {
+  CategoriesMock,
+  result as categoriesResult,
+} from "api/categories.test";
 
-test("Renders mocked items properly", async () => {
-  const { getByText } = render(
-    <MockedProvider mocks={mock}>
+test("Renders items, links, heading properly", async () => {
+  const { getByText, getByTestId } = render(
+    <CategoriesMock>
       <ProductList />
-    </MockedProvider>
+    </CategoriesMock>
   );
 
-  await waitFor(() => getByText("Möbel"));
+  const firstCategory = categoriesResult.data.categories[0];
 
-  const heading = getByText("Möbel");
-  expect(heading).toBeInTheDocument();
+  const categoryName = firstCategory.name;
 
-  const firstArticleName = getByText("Premium Komfortmatratze Smood");
-  expect(firstArticleName).toBeInTheDocument();
+  await waitFor(() => getByText(categoryName));
+
+  const heading = getByTestId(CATEGORY_TITLE_TEST_ID);
+  expect(heading).toHaveTextContent(categoryName);
+
+  const articleName = getByText(
+    firstCategory.categoryArticles.articles[0].name
+  );
+  expect(articleName).toBeInTheDocument();
+
+  const childCatName = getByText(firstCategory.childrenCategories[0].name);
+  expect(childCatName).toBeInTheDocument();
 });

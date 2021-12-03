@@ -25,7 +25,7 @@ function GenericList<Item>({
 
   return (
     <>
-      {error && <p>{error.message}</p>}
+      {error && <p data-testid="error">{error.message}</p>}
       <LoadingIndicator loading={loading}>
         <div
           css={

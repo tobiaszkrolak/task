@@ -23,7 +23,7 @@ const ProductList = () => {
       <ProductListItem
         key={name + variantName}
         name={name}
-        imageUrl={images.length ? images[0].path : undefined}
+        imageUrl={images[0].path}
         price={prices.regular.value / 100}
       />
     ),
@@ -64,7 +64,7 @@ const ProductList = () => {
     >
       <section>
         {!!category && (
-          <h1>
+          <h1 data-testid={CATEGORY_TITLE_TEST_ID}>
             {category.name}
             <small> ({category.articleCount})</small>
           </h1>
@@ -79,5 +79,7 @@ const ProductList = () => {
     </Page>
   );
 };
+
+export const CATEGORY_TITLE_TEST_ID = "categoryTitleTestId";
 
 export default ProductList;
